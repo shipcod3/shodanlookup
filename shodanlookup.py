@@ -4,9 +4,6 @@
 
 import shodan, time, sys
 
-#api config here: account.shodan.io
-SHODAN_API_KEY = "uAs67OallytytIdagyHKO1nAWxYetniW"
-
 def usage():
      print("USAGE: python shodanlookup.py <ip address> \n")  
 
@@ -14,7 +11,9 @@ def main(argv):
      
     if len(argv) < 2:
         return usage()
-        
+    
+    #api config here: account.shodan.io
+    SHODAN_API_KEY = "uAs67OallytytIdagyHKO1nAWxYetniW"
     api = shodan.Shodan(SHODAN_API_KEY)
     host = api.host(sys.argv[1])
      
