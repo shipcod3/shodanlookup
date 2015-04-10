@@ -17,7 +17,7 @@ def main(argv):
      
     try:
         api = shodan.Shodan(SHODAN_API_KEY)
-        host = sys.argv[1]
+        host = api.host(sys.argv[1])
         print ''
         print "[****] Starting Shodan IP search......"
         print ''
