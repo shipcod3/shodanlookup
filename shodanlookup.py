@@ -11,9 +11,13 @@ def usage():
      print("USAGE: python shodanlookup.py <ip address> \n")  
 
 def main(argv):
+     
+    if len(argv) < 2:
+        return usage()
+     
     try:
         api = shodan.Shodan(SHODAN_API_KEY)
-        host = api.host(raw_input("Set RHOST IP: "))
+        host = sys.argv[1]
         print ''
         print "[****] Starting Shodan IP search......"
         print ''
