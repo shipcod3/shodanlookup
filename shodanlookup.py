@@ -14,10 +14,11 @@ def main(argv):
      
     if len(argv) < 2:
         return usage()
+        
+    api = shodan.Shodan(SHODAN_API_KEY)
+    host = api.host(sys.argv[1])
      
     try:
-        api = shodan.Shodan(SHODAN_API_KEY)
-        host = api.host(sys.argv[1])
         print ''
         print "[****] Starting Shodan IP search......"
         print ''
