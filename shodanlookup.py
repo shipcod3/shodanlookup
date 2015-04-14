@@ -4,24 +4,20 @@
 
 import shodan, time, sys
 
-def usage():
-     print("USAGE: python shodanlookup.py <ip address> \n")  
+if len(sys.argv) < 2:
+    print "usage: python shodanlookup.py <ip address> \n"
+    sys.exit()
 
-def main(argv):
-     
-    if len(argv) < 2:
-        return usage()
-    
+else:
     #api config here: account.shodan.io
     SHODAN_API_KEY = "uAs67OallytytIdagyHKO1nAWxYetniW"
-    api = shodan.Shodan(SHODAN_API_KEY)
-    host = api.host(sys.argv[1])
-     
+
     try:
+        api = shodan.Shodan(SHODAN_API_KEY)
+        host = api.host(sys.argv[1])
         print ''
         print "[****] Starting Shodan IP search......"
         print ''
-        time.sleep (3)
         print "[+] ISP: {}".format(host.get('isp', 'n/a'))
         print "[+] Country: {}".format(host.get('country_name', 'n/a'))
         print "[+] Longitude: {}".format(host.get('longitude', 'n/a'))
@@ -33,16 +29,13 @@ def main(argv):
         print "[***] Printing available port(s)"
         print ''
         time.sleep(1)
-        
+
         for item in host['data']:
             print "[!] Port: {}".format(item['port'])
             print "{}".format(item['data'])
             print'[####] Done!!!'
             print ''
-            
+
     except Exception, e:
         print '[!!!!] Error: %s' % e
         sys.exit(1)
-        
-if __name__ == "__main__":
-    main(sys.argv)
